@@ -1,0 +1,16 @@
+services:
+  app:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - LLM_PROVIDER=${LLM_PROVIDER:-openai}
+      - LLM_MODEL=${LLM_MODEL:-gpt-4o-mini}
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+      - CHROMA_PERSIST_DIR=/data/chroma
+      - CHROMA_COLLECTION=${CHROMA_COLLECTION:-security_knowledge}
+    volumes:
+      - chroma_data:/data/chroma
+
+volumes:
+  chroma_data:
